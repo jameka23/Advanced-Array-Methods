@@ -1,7 +1,7 @@
 console.log(businesses)
 const outEl = document.querySelector("#output")
-// outEl.innerHTML = "<h1>Active Businesses</h1>"
-
+outEl.innerHTML = "<h1>Active Businesses</h1>"
+// ==================== FOREACH() ========================
 // businesses.forEach(business => {
 //   outEl.innerHTML += `
 //     <h2>${business.companyName}</h2>
@@ -28,7 +28,7 @@ const outEl = document.querySelector("#output")
 //     `
 //     outEl.innerHTML += "<hr/>"
 //   });
-
+// ==================== FILTER() ========================
 // Array to contain all the New York businesses
 // const newYorkBusinesses = businesses.filter(business => {
 //     console.log(business.addressStateCode)
@@ -52,7 +52,7 @@ const outEl = document.querySelector("#output")
 /*
 Lightning Exercise: Use filter() to create another array named manufacturingBusinesses that will contain all businesses in the manufacturing industry. Display those to the DOM.
 */
-// ==================== FILTER() ========================
+
 // const manufacturingBusinesses = businesses.filter(business => {
 //     let inManufacturing = false;
 //     if (business.companyIndustry === "Manufacturing") {
@@ -96,6 +96,7 @@ outEl.innerHTML += "<h1>Purchasing Agents</h1>";
 //   outEl.innerHTML += "<hr/>";
 // });
 
+// ==================== FIND() ========================
 // document
 //     .querySelector("#companySearch")
 //     .addEventListener("keypress", keyPressEvent => {
@@ -148,23 +149,34 @@ Lightning Exercise 1: Refactor your code to search for purchasing agents instead
 /*
 Lightning Exercise 2: Refactor your code so that if the search text is found in the first name, or last name, of any purchasing agent, show that agent.
 */
-document
-    .querySelector("#companySearch")
-    .addEventListener("keypress", keyPressEvent => {
-        if (keyPressEvent.charCode === 13) {
-            /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
-            // the includes() does the partial matching
-            const foundAgent = businesses.find(agent =>
-                agent.purchasingAgent.nameFirst.includes(keyPressEvent.target.value) || agent.purchasingAgent.nameLast.includes(keyPressEvent.target.value)
-            );
+// document
+//     .querySelector("#companySearch")
+//     .addEventListener("keypress", keyPressEvent => {
+//         if (keyPressEvent.charCode === 13) {
+//             /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
+//             // the includes() does the partial matching
+//             const foundAgent = businesses.find(agent =>
+//                 agent.purchasingAgent.nameFirst.includes(keyPressEvent.target.value) || agent.purchasingAgent.nameLast.includes(keyPressEvent.target.value)
+//             );
 
-            outEl.innerHTML = `
-                <h2>
-                ${foundAgent.companyName}
-                </h2>
-                <section>
-                ${foundAgent.purchasingAgent.nameFirst} ${foundAgent.purchasingAgent.nameLast}
-                </section>
-            `;
-        }
-    });
+//             outEl.innerHTML = `
+//                 <h2>
+//                 ${foundAgent.companyName}
+//                 </h2>
+//                 <section>
+//                 ${foundAgent.purchasingAgent.nameFirst} ${foundAgent.purchasingAgent.nameLast}
+//                 </section>
+//             `;
+//         }
+//     });
+
+
+// ============================== PRACTICE ========================
+/*
+Use the filter method to get all the big spenders in the main array into a new one.
+*/
+// Array to contain all the big spenders
+const bigSpenders = businesses.filter(business => {
+    return business.orders.find(order => order > 9000)
+})
+console.log(bigSpenders)
