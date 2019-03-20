@@ -125,14 +125,37 @@ outEl.innerHTML += "<h1>Purchasing Agents</h1>";
 /*
 Lightning Exercise 1: Refactor your code to search for purchasing agents instead. If the search text is found in the first name of any purchasing agent, show that agent.
 */
+// document
+//     .querySelector("#companySearch")
+//     .addEventListener("keypress", keyPressEvent => {
+//         if (keyPressEvent.charCode === 13) {
+//             /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
+//             const foundAgent = businesses.find(
+//                 agent =>
+//                     agent.purchasingAgent.nameFirst.includes(keyPressEvent.target.value) // the includes() does the partial matching
+//             );
+
+//             outEl.innerHTML = `
+//                 <h2>
+//                 ${foundAgent.companyName}
+//                 </h2>
+//                 <section>
+//                 ${foundAgent.purchasingAgent.nameFirst} ${foundAgent.purchasingAgent.nameLast}
+//                 </section>
+//             `;
+//         }
+//     });
+/*
+Lightning Exercise 2: Refactor your code so that if the search text is found in the first name, or last name, of any purchasing agent, show that agent.
+*/
 document
     .querySelector("#companySearch")
     .addEventListener("keypress", keyPressEvent => {
         if (keyPressEvent.charCode === 13) {
             /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
-            const foundAgent = businesses.find(
-                agent =>
-                    agent.purchasingAgent.nameFirst.includes(keyPressEvent.target.value) // the includes() does the partial matching
+            // the includes() does the partial matching
+            const foundAgent = businesses.find(agent =>
+                agent.purchasingAgent.nameFirst.includes(keyPressEvent.target.value) || agent.purchasingAgent.nameLast.includes(keyPressEvent.target.value)
             );
 
             outEl.innerHTML = `
