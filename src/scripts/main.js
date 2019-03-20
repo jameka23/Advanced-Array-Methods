@@ -52,6 +52,7 @@ const outEl = document.querySelector("#output")
 /*
 Lightning Exercise: Use filter() to create another array named manufacturingBusinesses that will contain all businesses in the manufacturing industry. Display those to the DOM.
 */
+// ==================== FILTER() ========================
 // const manufacturingBusinesses = businesses.filter(business => {
 //     let inManufacturing = false;
 //     if (business.companyIndustry === "Manufacturing") {
@@ -73,24 +74,74 @@ Lightning Exercise: Use filter() to create another array named manufacturingBusi
 /*Lightning Exercise: Instead of just returning the purchasing agent object, return a new object that has the full name of the purchasing agent, the company name, and the phone number. The data structure is shown below. Use that new data structure to display the agent with their company and phone number */
 
 outEl.innerHTML += "<h1>Purchasing Agents</h1>";
-
+// ==================== MAP ========================
 /*
     Using map(), you extract the purchasing agent object
     from each business and store it in a new array
 */
-const agents = businesses.map(business => {
-    return{
-        "fullName": `${business.purchasingAgent.nameFirst} ${business.purchasingAgent.nameLast}`,
-        "company": business.companyName,
-        "phoneNumber": business.phoneWork
-    }
-})
+// const agents = businesses.map(business => {
+//     return{
+//         "fullName": `${business.purchasingAgent.nameFirst} ${business.purchasingAgent.nameLast}`,
+//         "company": business.companyName,
+//         "phoneNumber": business.phoneWork
+//     }
+// })
 
-console.table(agents)
+// console.table(agents)
 
-agents.forEach(agent => {
-  outEl.innerHTML += `<h1>${agent.fullName}</h1>`;
-  outEl.innerHTML += `<h3>${agent.company}</h3>`;
-  outEl.innerHTML += `<h3>${agent.phoneNumber}</h3>`;
-  outEl.innerHTML += "<hr/>";
-});
+// agents.forEach(agent => {
+//   outEl.innerHTML += `<h1>${agent.fullName}</h1>`;
+//   outEl.innerHTML += `<h3>${agent.company}</h3>`;
+//   outEl.innerHTML += `<h3>${agent.phoneNumber}</h3>`;
+//   outEl.innerHTML += "<hr/>";
+// });
+
+// document
+//     .querySelector("#companySearch")
+//     .addEventListener("keypress", keyPressEvent => {
+//         if (keyPressEvent.charCode === 13) {
+//             /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
+//             const foundBusiness = businesses.find(
+//                 business =>
+//                     business.companyName.includes(keyPressEvent.target.value) // the includes() does the partial matching
+//             );
+
+//             outEl.innerHTML = `
+//                 <h2>
+//                 ${foundBusiness.companyName}
+//                 </h2>
+//                 <section>
+//                 ${foundBusiness.addressFullStreet}
+
+//                 </section>
+//                 <section>
+//                 ${foundBusiness.addressCity},
+//                 ${foundBusiness.addressStateCode}
+//                 ${foundBusiness.addressZipCode}
+//                 </section>
+//             `;
+//         }
+//     });
+/*
+Lightning Exercise 1: Refactor your code to search for purchasing agents instead. If the search text is found in the first name of any purchasing agent, show that agent.
+*/
+document
+    .querySelector("#companySearch")
+    .addEventListener("keypress", keyPressEvent => {
+        if (keyPressEvent.charCode === 13) {
+            /* WHEN  USER PRESSES ENTER, FIND MATCHING BUSINESS */
+            const foundAgent = businesses.find(
+                agent =>
+                    agent.purchasingAgent.nameFirst.includes(keyPressEvent.target.value) // the includes() does the partial matching
+            );
+
+            outEl.innerHTML = `
+                <h2>
+                ${foundAgent.companyName}
+                </h2>
+                <section>
+                ${foundAgent.purchasingAgent.nameFirst} ${foundAgent.purchasingAgent.nameLast}
+                </section>
+            `;
+        }
+    });
